@@ -3,22 +3,33 @@ const proxy = require('./proxies.js')
 const HttpsProxyAgent = require("https-proxy-agent")
 let i = 0
 setInterval(() => {
-const httpsAgent = new HttpsProxyAgent(proxy())
-axios.create({ httpsAgent }).request({
-    url: 'https://psu.exposed/obfuscate',
-    method: 'POST',
-    body: JSON.stringify({
-      script: 'print("a")\n'.repeat(1000), key: 'a', options: {
-        DisableSuperOperators: true,
-        MaximumSecurityEnabled: true,
-        EncryptAllStrings: true,
-        DisableAllMacros: true,
-        EnhancedOutput: true,
-        PremiumFormat: true,
-        ByteCodeMode: 'Default'
-      }
-    })
-  }).then(d => d.text()).then(d => {
-    console.log('izi', d, i++)
-  })
-}, 1000)
+
+  try{
+    const httpsAgent = new HttpsProxyAgent(proxy())
+    axios.create({ httpsAgent }).request({
+        url: 'https://psu.exposed/obfuscate',
+        method: 'POST',
+        data: {
+          script: "print('e')\n",
+          key: "kfcobfuscator",
+          options: {
+              DisableSuperOperators: true,
+              MaximumSecurityEnabled: true,
+              EncryptAllStrings: true,
+              DisableAllMacros: true,
+              EnhancedOutput: true,
+              CompressedOutput: true,
+              PremiumFormat: true,
+              ByteCodeMode: "Default"
+          }
+        }
+      }).then(d => {
+        console.log("Weenie")
+      })
+      .catch(e =>{
+        console.log("No eze ",e.response || "No res")
+      })
+    }catch(e){
+      console.log("Big boi error :sob:")
+    }
+}, 50)
