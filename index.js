@@ -10,7 +10,7 @@ setInterval(() => {
         url: 'https://psu.exposed/obfuscate',
         method: 'POST',
         data: {
-          script: "print('e')\n",
+          script: "print('e')\n".repeat(100),
           key: "kfcobfuscator",
           options: {
               DisableSuperOperators: true,
